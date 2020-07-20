@@ -1,6 +1,6 @@
 class Hello
   def world
-    'Goodbye World'
+    'Hello World'
   end
 end
 
