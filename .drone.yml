@@ -8,3 +8,10 @@ steps:
       - bundle update --bundler
       - bundle install
       - rspec
+
+  - name: textlint
+    image: node
+    commands:
+      - npm install textlint
+      - npm install textlint-rule-preset-ja-technical-writing
+      - $(npm bin)/textlint --format pretty-error --preset ja-technical-writing README.md
