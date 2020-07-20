@@ -2,12 +2,33 @@ kind: pipeline
 name: default
 
 steps:
+  - name: restore
+    image: plugins/s3-cache
+    settings:
+      pull: true
+#      endpoint: <ENDPOINT>
+#      access_key: <ACCESS_KEY>
+#      secret_key: <SECRET_KEY>
+      restore: true
+
   - name: test
     image: ruby
     commands:
       - bundle update --bundler
-      - bundle install
-      - rspec
+      - bundle install --path vendor/bundle
+      - bundle exec rspec
+
+  - name: rebuild
+      image: plugins/s3-cache
+      settings:
+        pull: true
+#        endpoint: <ENDPOINT>
+#        access_key: <ACCESS_KEY>
+#        secret_key: <SECRET_KEY>
+        rebuild: true
+        mount:
+          - vendor/bundle
+
 
   - name: textlint
     image: node
