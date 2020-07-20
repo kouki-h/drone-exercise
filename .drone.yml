@@ -6,9 +6,6 @@ steps:
     image: plugins/s3-cache
     settings:
       pull: true
-#      endpoint: <ENDPOINT>
-#      access_key: <ACCESS_KEY>
-#      secret_key: <SECRET_KEY>
       restore: true
 
   - name: test
@@ -22,9 +19,6 @@ steps:
       image: plugins/s3-cache
       settings:
         pull: true
-#        endpoint: <ENDPOINT>
-#        access_key: <ACCESS_KEY>
-#        secret_key: <SECRET_KEY>
         rebuild: true
         mount:
           - vendor/bundle
