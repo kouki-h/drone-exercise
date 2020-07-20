@@ -16,13 +16,12 @@ steps:
       - bundle exec rspec
 
   - name: rebuild
-      image: plugins/s3-cache
-      settings:
-        pull: true
-        rebuild: true
-        mount:
-          - vendor/bundle
-
+    image: plugins/s3-cache
+    settings:
+      pull: true
+      rebuild: true
+      mount:
+        - vendor/bundle
 
   - name: textlint
     image: node
